@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace VRStandardAssets.Utils
@@ -19,6 +20,37 @@ namespace VRStandardAssets.Utils
 
         protected bool m_IsOver;
 
+        private List<PlayMakerFSM> m_FSMList;
+
+        void Start()
+        {
+            m_FSMList = new List<PlayMakerFSM>();
+
+            PlayMakerFSM[] fsms = gameObject.GetComponents<PlayMakerFSM>();
+            Debug.Log(fsms.Length);
+
+            if (fsms.Length > 0)
+            {
+                for (int i = 0; i < fsms.Length; i++)
+                {
+                    m_FSMList.Add(fsms[i]);
+                }
+            }
+
+        }
+
+        public void SendEventToFSM(string fsmEvent)
+        {
+            if (null != m_FSMList)
+            {
+                for (int i = 0; i < m_FSMList.Count; i++)
+                {
+                    PlayMakerFSM fsm = m_FSMList[i];
+                    Debug.Log(m_FSMList.Count);
+                    fsm.SendEvent(fsmEvent);
+                }
+            }
+        }
 
         public bool IsOver
         {
@@ -31,15 +63,21 @@ namespace VRStandardAssets.Utils
         public void Over()
         {
             m_IsOver = true;
+            SendEventToFSM("ON_OVER");
+
 
             if (OnOver != null)
+            {
                 OnOver();
+            }
         }
 
 
         public void Out()
         {
             m_IsOver = false;
+            SendEventToFSM("OUT");
+
 
             if (OnOut != null)
                 OnOut();
