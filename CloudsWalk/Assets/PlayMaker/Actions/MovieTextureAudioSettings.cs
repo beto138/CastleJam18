@@ -11,7 +11,7 @@ namespace HutongGames.PlayMaker.Actions
 	public class MovieTextureAudioSettings : FsmStateAction
 	{
 		[RequiredField]
-		[ObjectType(typeof(MovieTexture))]
+		[ObjectType(typeof(UnityEngine.Video.VideoPlayer))]
 		public FsmObject movieTexture;
 
 		[RequiredField]
@@ -30,19 +30,19 @@ namespace HutongGames.PlayMaker.Actions
 
 		public override void OnEnter()
 		{
-			var movie = movieTexture.Value as MovieTexture;
+			var movie = movieTexture.Value as UnityEngine.Video.VideoPlayer;
 
 			if (movie != null && gameObject.Value != null)
 			{
 			    var audio = gameObject.Value.GetComponent<AudioSource>();
-				if (audio != null)
-				{
-					audio.clip = movie.audioClip;
-					
-					//if (!volume.IsNone)
-					//	audio.volume = volume.Value;
-				}
-			}
+                if (audio != null)
+                {
+                    audio.clip = movie.GetComponent<AudioSource>();
+
+                    //if (!volume.IsNone)
+                    //	audio.volume = volume.Value;
+                }
+            }
 				
 			Finish();
 		}

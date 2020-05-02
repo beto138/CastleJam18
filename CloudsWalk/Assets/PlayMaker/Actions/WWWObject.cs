@@ -25,7 +25,7 @@ namespace HutongGames.PlayMaker.Actions
 		public FsmTexture storeTexture;
 
         [UIHint(UIHint.Variable)]
-		[ObjectType(typeof(MovieTexture))]
+		[ObjectType(typeof(UnityEngine.Video.VideoPlayer))]
 		[Tooltip("Gets a Texture from the url.")]
 		public FsmObject storeMovieTexture;
 

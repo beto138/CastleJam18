@@ -10,7 +10,7 @@ namespace HutongGames.PlayMaker.Actions
 	public class TouchGUIEvent : FsmStateAction
 	{
 		[RequiredField]
-		[CheckForComponent(typeof(GUIElement))]
+		[CheckForComponent(typeof(UnityEngine.UI.LayoutElement))]
 		[Tooltip("The Game Object that owns the GUI Texture or GUI Text.")]
 		public FsmOwnerDefault gameObject;
 
@@ -75,7 +75,7 @@ namespace HutongGames.PlayMaker.Actions
 		// private work variables
 
 		private Vector3 touchStartPos;
-		private GUIElement guiElement;
+		private UnityEngine.UI.LayoutElement guiElement;
 
 		public override void Reset()
 		{
@@ -123,9 +123,9 @@ namespace HutongGames.PlayMaker.Actions
 					return;
 				}
 
-				guiElement = go.GetComponent<GUITexture>() ?? (GUIElement) go.GetComponent<GUIText>();
+                guiElement = go.GetComponent<GUITexture>() ?? (GUIElement)go.GetComponent<GUIText>();
 
-				if (guiElement == null)
+                if (guiElement == null)
 				{
 					return;
 				}

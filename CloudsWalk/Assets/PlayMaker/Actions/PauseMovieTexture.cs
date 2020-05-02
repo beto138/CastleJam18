@@ -11,7 +11,7 @@ namespace HutongGames.PlayMaker.Actions
 	public class PauseMovieTexture : FsmStateAction
 	{
 		[RequiredField]
-		[ObjectType(typeof(MovieTexture))]
+		[ObjectType(typeof(UnityEngine.Video.VideoPlayer))]
 		public FsmObject movieTexture;
 
 		public override void Reset()
@@ -21,7 +21,7 @@ namespace HutongGames.PlayMaker.Actions
 
 		public override void OnEnter()
 		{
-			var movie = movieTexture.Value as MovieTexture;
+			var movie = movieTexture.Value as UnityEngine.Video.VideoPlayer;
 
 			if (movie != null)
 			{

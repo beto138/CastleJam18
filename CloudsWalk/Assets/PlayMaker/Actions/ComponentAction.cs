@@ -59,14 +59,14 @@ namespace HutongGames.PlayMaker.Actions
             get { return cachedComponent as Camera; }
         }
 
-        protected GUIText guiText
+        protected UnityEngine.UI.Text guiText
         {
-            get { return cachedComponent as GUIText; }
+            get { return cachedComponent as UnityEngine.UI.Text; }
         }
 
-        protected GUITexture guiTexture
+        protected UnityEngine.UI.Text guiTexture
         {
-            get { return cachedComponent as GUITexture; }
+            get { return cachedComponent as UnityEngine.UI.Text; }
         }
 
         protected Light light

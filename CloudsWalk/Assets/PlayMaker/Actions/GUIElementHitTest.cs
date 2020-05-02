@@ -5,12 +5,12 @@ using UnityEngine;
 namespace HutongGames.PlayMaker.Actions
 {
 	[ActionCategory(ActionCategory.GUIElement)]
-	[Tooltip("Performs a Hit Test on a Game Object with a GUITexture or GUIText component.")]
+	[Tooltip("Performs a Hit Test on a Game Object with a UnityEngine.UI.Image or GUIText component.")]
 	public class GUIElementHitTest : FsmStateAction
 	{
 		[RequiredField]
-		[CheckForComponent(typeof(GUIElement))]
-		[Tooltip("The GameObject that has a GUITexture or GUIText component.")]
+		[CheckForComponent(typeof(UnityEngine.UI.LayoutElement))]
+		[Tooltip("The GameObject that has a UnityEngine.UI.Image or GUIText component.")]
 		public FsmOwnerDefault gameObject;
 		[Tooltip("Specify camera or use MainCamera as default.")]
 		public Camera camera;
@@ -31,7 +31,7 @@ namespace HutongGames.PlayMaker.Actions
 		public FsmBool everyFrame;
 
 		// cache component
-		private GUIElement guiElement;
+		private UnityEngine.UI.LayoutElement guiElement;
 
 		// remember game object cached, so we can re-cache component if it changes
 		private GameObject gameObjectCached;
@@ -71,23 +71,23 @@ namespace HutongGames.PlayMaker.Actions
 				return;
 			}
 
-			// cache GUIElement component
+            // cache GUIElement component
 
-			if (go != gameObjectCached)
-			{
-				guiElement = go.GetComponent<GUITexture>() ?? (GUIElement) go.GetComponent<GUIText>();
-				gameObjectCached = go;
-			}
+            if (go != gameObjectCached)
+            {
+                guiElement = go.GetComponent<UnityEngine.UI.Image>() ?? go.GetComponent<UnityEngine.UI.Text>();
+                gameObjectCached = go;
+            }
 
-			if (guiElement == null)
-			{
-				Finish();
-				return;
-			}
+            if (guiElement == null)
+            {
+                Finish();
+                return;
+            }
 
-			// get screen point to test
+            // get screen point to test
 
-			var testPoint = screenPoint.IsNone ? new Vector3(0, 0) : screenPoint.Value;
+            var testPoint = screenPoint.IsNone ? new Vector3(0, 0) : screenPoint.Value;
 			
 			if (!screenX.IsNone)
 			{
@@ -105,18 +105,19 @@ namespace HutongGames.PlayMaker.Actions
 				testPoint.y *= Screen.height;
 			}
 
-			// perform hit test
+            // perform hit test
 
-			if (guiElement.HitTest(testPoint, camera))
-			{
-				storeResult.Value = true;
-				Fsm.Event(hitEvent);
-			}
-			else
-			{
-				storeResult.Value = false;
-			}
-		}
+
+            if (guiElement.HitTest(testPoint, camera))
+            {
+                storeResult.Value = true;
+                Fsm.Event(hitEvent);
+            }
+            else
+            {
+                storeResult.Value = false;
+            }
+        }
 
 	}
 }

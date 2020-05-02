@@ -6,10 +6,10 @@ namespace HutongGames.PlayMaker.Actions
 {
 	[ActionCategory(ActionCategory.GUIElement)]
 	[Tooltip("Sets the Texture used by the GUITexture attached to a Game Object.")]
-	public class SetGUITexture : ComponentAction<GUITexture>
+	public class SetGUITexture : ComponentAction<UnityEngine.UI.Image>
 	{
 		[RequiredField]
-		[CheckForComponent(typeof(GUITexture))]
+		[CheckForComponent(typeof(UnityEngine.UI.Image))]
 		[Tooltip("The GameObject that owns the GUITexture.")]
         public FsmOwnerDefault gameObject;
 
@@ -22,15 +22,15 @@ namespace HutongGames.PlayMaker.Actions
 			texture = null;
 		}
 
-		public override void OnEnter()
-		{
-			var go = Fsm.GetOwnerDefaultTarget(gameObject);
-			if (UpdateCache(go))
-			{
-				guiTexture.texture = texture.Value;
-			}
-			
-			Finish();
-		}
-	}
+        public override void OnEnter()
+        {
+            var go = Fsm.GetOwnerDefaultTarget(gameObject);
+            if (UpdateCache(go))
+            {
+                guiTexture.texture = texture.Value;
+            }
+
+            Finish();
+        }
+    }
 }

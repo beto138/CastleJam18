@@ -11,7 +11,7 @@ namespace HutongGames.PlayMaker.Actions
 	public class PlayMovieTexture : FsmStateAction
 	{
 		[RequiredField]
-		[ObjectType(typeof(MovieTexture))]
+		[ObjectType(typeof(UnityEngine.Video.VideoPlayer))]
 		public FsmObject movieTexture;
 		
 		public FsmBool loop;
@@ -24,11 +24,11 @@ namespace HutongGames.PlayMaker.Actions
 
 		public override void OnEnter()
 		{
-			var movie = movieTexture.Value as MovieTexture;
+			var movie = movieTexture.Value as UnityEngine.Video.VideoPlayer;
 
 			if (movie != null)
 			{
-				movie.loop = loop.Value;
+				movie.isLooping = loop.Value;
 				movie.Play();
 			}
 			

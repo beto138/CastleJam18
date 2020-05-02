@@ -25,7 +25,7 @@ namespace HutongGames.PlayMaker.Actions
 		public FsmString namedTexture;
 
 		[RequiredField]
-		[ObjectType(typeof(MovieTexture))]
+		[ObjectType(typeof(UnityEngine.Video.VideoPlayer))]
 		public FsmObject movieTexture;
 
 		public override void Reset()
@@ -45,18 +45,18 @@ namespace HutongGames.PlayMaker.Actions
 
 		void DoSetMaterialTexture()
 		{
-			var movie = movieTexture.Value as MovieTexture;
+			var movie = movieTexture.Value as UnityEngine.Video.VideoPlayer;
 
 			var namedTex = namedTexture.Value;
 			if (namedTex == "") namedTex = "_MainTex";
 
-			if (material.Value != null)
-			{
-				material.Value.SetTexture(namedTex, movie);
-				return;
-			}
+            if (material.Value != null)
+            {
+                material.Value.SetTexture(namedTex, movie);
+                return;
+            }
 
-			var go = Fsm.GetOwnerDefaultTarget(gameObject);
+            var go = Fsm.GetOwnerDefaultTarget(gameObject);
 			if (!UpdateCache(go))
 			{
 				return;
@@ -68,17 +68,17 @@ namespace HutongGames.PlayMaker.Actions
 				return;
 			}
 
-			if (materialIndex.Value == 0)
-			{
-				renderer.material.SetTexture(namedTex, movie);
-			}
-			else if (renderer.materials.Length > materialIndex.Value)
-			{
-				var materials = renderer.materials;
-				materials[materialIndex.Value].SetTexture(namedTex, movie);
-				renderer.materials = materials;
-			}
-		}
+            if (materialIndex.Value == 0)
+            {
+                renderer.material.SetTexture(namedTex, movie);
+            }
+            else if (renderer.materials.Length > materialIndex.Value)
+            {
+                var materials = renderer.materials;
+                materials[materialIndex.Value].SetTexture(namedTex, movie);
+                renderer.materials = materials;
+            }
+        }
 	}
 }
 

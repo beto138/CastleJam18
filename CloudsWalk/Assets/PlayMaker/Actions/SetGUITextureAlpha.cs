@@ -6,10 +6,10 @@ namespace HutongGames.PlayMaker.Actions
 {
 	[ActionCategory(ActionCategory.GUIElement)]
 	[Tooltip("Sets the Alpha of the GUITexture attached to a Game Object. Useful for fading GUI elements in/out.")]
-	public class SetGUITextureAlpha : ComponentAction<GUITexture>
+	public class SetGUITextureAlpha : ComponentAction<UnityEngine.UI.Image>
 	{
 		[RequiredField]
-		[CheckForComponent(typeof(GUITexture))]
+		[CheckForComponent(typeof(UnityEngine.UI.Image))]
 		public FsmOwnerDefault gameObject;
 		[RequiredField]
 		public FsmFloat alpha;

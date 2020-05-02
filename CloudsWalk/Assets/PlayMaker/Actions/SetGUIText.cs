@@ -6,10 +6,10 @@ namespace HutongGames.PlayMaker.Actions
 {
 	[ActionCategory(ActionCategory.GUIElement)]
 	[Tooltip("Sets the Text used by the GUIText Component attached to a Game Object.")]
-	public class SetGUIText : ComponentAction<GUIText>
+	public class SetGUIText : ComponentAction<UnityEngine.UI.Text>
 	{
 		[RequiredField]
-		[CheckForComponent(typeof(GUIText))]
+		[CheckForComponent(typeof(UnityEngine.UI.Text))]
 		public FsmOwnerDefault gameObject;
 
         [UIHint(UIHint.TextArea)]

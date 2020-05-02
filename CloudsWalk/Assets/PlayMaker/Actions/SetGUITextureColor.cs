@@ -6,10 +6,10 @@ namespace HutongGames.PlayMaker.Actions
 {
 	[ActionCategory(ActionCategory.GUIElement)]
 	[Tooltip("Sets the Color of the GUITexture attached to a Game Object.")]
-	public class SetGUITextureColor : ComponentAction<GUITexture>
+	public class SetGUITextureColor : ComponentAction<UnityEngine.UI.Image>
 	{
 		[RequiredField]
-		[CheckForComponent(typeof(GUITexture))]
+		[CheckForComponent(typeof(UnityEngine.UI.Image))]
 		public FsmOwnerDefault gameObject;
 		[RequiredField]
 		public FsmColor color;
